@@ -14,7 +14,7 @@ public class DatabaseRequest {
 	public DatabaseRequest(){
 		CouchbaseEnvironment env = DefaultCouchbaseEnvironment.builder().connectTimeout(10000).queryEnabled(true).build();
 		this.cluster = CouchbaseCluster.create(env, "192.168.1.104:8091");
-		this.bucket = this.cluster.openBucket("Pereiras", "ruadaspalheiras");
+		this.bucket = this.cluster.openBucket("VLibrary", "ruadaspalheiras");
 	}
 	
 	protected void finalize(){
