@@ -2,29 +2,25 @@
 public class Person {
 	private String name;
 	private String telephone;
-	private int id;
+	private String id;
 	
-	public void SetName(String name){
+	public Person(String name, String phone){
 		this.name = name;
+		this.telephone = phone;
+		this.id = name+phone;
 	}
+	
 	
 	public String GetName(){
 		return this.name;
 	}
 	
-	public void SetTelephone(String telephone){
-		this.telephone = telephone;
-	}
-	
+		
 	public String GetTelephone(){
 		return this.telephone;
 	}
 	
-	public void SetId(int id){
-		this.id = id;
-	}
-	
-	public int GetId(){
+	public String GetId(){
 		return this.id;
 	}
 }

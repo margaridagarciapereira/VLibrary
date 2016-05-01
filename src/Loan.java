@@ -15,7 +15,7 @@ public class Loan {
 		this.book = book;
 		this.person = person;
 		this.date = Date.from(Instant.now());
-		this.loanId = person.GetName() + book.GetTitle();
+		this.loanId = book.GetTitle() + person.GetName();
 	}
 	
 	public Date GetDate(){

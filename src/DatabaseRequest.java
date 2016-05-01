@@ -12,7 +12,7 @@ public class DatabaseRequest {
 	Bucket bucket;
 	
 	public DatabaseRequest(){
-		CouchbaseEnvironment env = DefaultCouchbaseEnvironment.builder().connectTimeout(10000).queryEnabled(true).build();
+		CouchbaseEnvironment env = DefaultCouchbaseEnvironment.builder().connectTimeout(10000).queryEnabled(true).queryPort(8091).build();
 		this.cluster = CouchbaseCluster.create(env, "192.168.1.104:8091");
 		this.bucket = this.cluster.openBucket("VLibrary", "ruadaspalheiras");
 	}
@@ -33,5 +33,18 @@ public class DatabaseRequest {
 		return response;
 	}
 	
+	public JsonDocument AddLoan(Loan loan){
+		JsonObject loanA = JsonObject.empty()
+				.put("date", loan.GetDate().toString())
+				.put("bookRef", loan.GetBook().GetBookId())
+				.put("person", loan.GetPerson().GetName())
+				.put("personID", loan.GetPerson().GetId())
+				.put("personPhone", loan.GetPerson().GetTelephone())
+				.put("loanID", loan.GetLoanId());
+		
+		JsonDocument doc = JsonDocument.create(loan.GetLoanId(), loanA);
+		JsonDocument response = bucket.upsert(doc);
+		return response;
+	}
 	
 }
